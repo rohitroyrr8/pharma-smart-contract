@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rohitroyrr8/pharma-smart-contract.git"
@@ -23,7 +20,7 @@
     "url": "https://github.com/rohitroyrr8/pharma-smart-contract/issues"
   },
   "homepage": "https://github.com/rohitroyrr8/pharma-smart-contract#readme",
-  "script" : {
+  "scripts" : {
 	  "lint" : "tslint -c tslint.json 'src/**/*.ts'",
 	  "pretest" : "npm run lint",
 	  "test" : "nyc mocha -r ts-node/register 'tests/**/*.spec.ts'",
