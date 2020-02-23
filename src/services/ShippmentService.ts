@@ -13,7 +13,7 @@ export class ShippmentService {
         try {
             
         } catch(error) {
-            return new SupplyChainResponse(500, Messages.E000, null, error);
+            return new SupplyChainResponse(500, Messages.E002, error);
         }
     }
 
@@ -26,7 +26,7 @@ export class ShippmentService {
         try {
             
         } catch(error) {
-            return new SupplyChainResponse(500, Messages.E000, null, error);
+            return new SupplyChainResponse(500, Messages.E002, error);
         }
     }
 }

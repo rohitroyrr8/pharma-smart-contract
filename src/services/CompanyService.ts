@@ -17,8 +17,8 @@ export class CompanyService {
      */
     public async registerCompany(ctx: PharmaNetContext, companyStr: string) : Promise<SupplyChainResponse>{
         let supplyChainResponse: SupplyChainResponse;
-       try {
-            let companyDto: CompanyDto = JSON.parse(companyStr);
+        try {
+            let companyDto: CompanyDto = new CompanyDto(JSON.parse(companyStr));
             let response = await this.validateCompanyDto(companyDto);
             if(response) {
                 return response;
@@ -32,10 +32,10 @@ export class CompanyService {
             await ctx.stub.putState(companyCompositeKey, Buffer.from(JSON.stringify(companyDto)));
 
             return new SupplyChainResponse(200, 'Company registered successfully.');
-       } catch(error) {
+        } catch(error) {
            logger.error(error);
            return new SupplyChainResponse(500, Messages.E002, error);
-       }
+        }
     }
 
     public async validateCompanyDto(companyDto: CompanyDto): Promise<SupplyChainResponse> {

@@ -1,15 +1,26 @@
 import { CompanyDto } from "./CompanyDto";
 
 export class DrugDto {
+    private productId: string;
     private drugName: string;
     private serialNo: string;
     private manufacturerDate: Date;
     private expiryDate: Date;
+    private shippment: string[];
+    private manufacturer: string;
+    private owner: string;
+    private createdAt: Date;
+    private updatedAt: Date;
     
     private company: CompanyDto;
     private customerAadhar: number;
 
     constructor(drugDto) {
+
+        this.productId = drugDto.productId;
+        this.manufacturer  = drugDto.manufacturer;
+        this.owner = drugDto.owner;
+        
         if(drugDto.drugName) {
             this.drugName = drugDto.drugName;
         }
@@ -33,8 +44,119 @@ export class DrugDto {
         if(drugDto.customerAadhar) {
             this.customerAadhar = drugDto.customerAadhar;
         }
+
+        if(drugDto.shippment) {
+            let shippment = [];
+            for(const element of drugDto.shippment) {
+                shippment.push(element);
+            }
+            this.shippment = shippment;
+        }
+
+        if(drugDto.createdAt) {
+            this.createdAt = new Date(drugDto.createdAt);
+        }
+
+        if(drugDto.updatedAt) {
+            this.updatedAt = new Date(drugDto.updatedAt);
+        }
     }
 
+    /**
+     * Getter $productId
+     * @return {string}
+     */
+	public get $productId(): string {
+		return this.productId;
+	}
+
+    /**
+     * Getter $shippment
+     * @return {string[]}
+     */
+	public get $shippment(): string[] {
+		return this.shippment;
+	}
+
+    /**
+     * Getter $manufacturer
+     * @return {string}
+     */
+	public get $manufacturer(): string {
+		return this.manufacturer;
+	}
+
+    /**
+     * Getter $owner
+     * @return {string}
+     */
+	public get $owner(): string {
+		return this.owner;
+	}
+
+    /**
+     * Getter $createdAt
+     * @return {Date}
+     */
+	public get $createdAt(): Date {
+		return this.createdAt;
+	}
+
+    /**
+     * Getter $updatedAt
+     * @return {Date}
+     */
+	public get $updatedAt(): Date {
+		return this.updatedAt;
+	}
+
+    /**
+     * Setter $productId
+     * @param {string} value
+     */
+	public set $productId(value: string) {
+		this.productId = value;
+	}
+
+    /**
+     * Setter $shippment
+     * @param {string[]} value
+     */
+	public set $shippment(value: string[]) {
+		this.shippment = value;
+	}
+
+    /**
+     * Setter $manufacturer
+     * @param {string} value
+     */
+	public set $manufacturer(value: string) {
+		this.manufacturer = value;
+	}
+
+    /**
+     * Setter $owner
+     * @param {string} value
+     */
+	public set $owner(value: string) {
+		this.owner = value;
+	}
+
+    /**
+     * Setter $createdAt
+     * @param {Date} value
+     */
+	public set $createdAt(value: Date) {
+		this.createdAt = value;
+	}
+
+    /**
+     * Setter $updatedAt
+     * @param {Date} value
+     */
+	public set $updatedAt(value: Date) {
+		this.updatedAt = value;
+	}
 
     /**
      * Getter $drugName
