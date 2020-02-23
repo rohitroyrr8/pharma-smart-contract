@@ -3,6 +3,8 @@ import {Context, Contract} from 'fabric-contract-api';
 import log4js = require('log4js');
 import { CompanyDto } from '../dto/CompanyDto';
 import { CompanyService } from '../services/CompanyService';
+import { DrugService } from '../services/DrugService';
+import { PurchasingOrderService } from '../services/PurchasingOrderService';
 
 const logger = log4js.getLogger('PharmaNet SmartContract');
 
@@ -30,5 +32,29 @@ export class PharmanetContract extends Contract {
 
     public async registerCompany(ctx: PharmaNetContext, companyDto: string) {
         return (new CompanyService().registerCompany(ctx, companyDto));
+    }
+
+    public async addDrug(ctx: PharmaNetContext, drugStr: string) {
+        return (new DrugService().addDrug(ctx, drugStr));
+    }
+
+    public async retailDrug(ctx: PharmaNetContext, drugStr: string) {
+        return (new DrugService().retailDrug(ctx, drugStr));
+    }
+
+    public async getDrug(ctx: PharmaNetContext, drugStr: string) {
+        return (new DrugService().getDrugCurrentState(ctx, drugStr));
+    }
+
+    public async viewHistory(ctx: PharmaNetContext, drugStr: string) {
+        return (new DrugService().getDrugCurrentState(ctx, drugStr));
+    }
+
+    public async createPO(ctx: PharmaNetContext, purchasingOrderStr: string) {
+        return (new PurchasingOrderService().createPO(ctx, purchasingOrderStr));
+    }
+
+    public async createShippment(ctx: PharmaNetContext, shippmentDto) {
+        return (new s)
     }
 }

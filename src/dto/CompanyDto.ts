@@ -3,6 +3,8 @@ export class CompanyDto {
     private companyName: string;
     private location: string;
     private organisationRole: string;
+    private createdAt: Date;
+    private updatedAt: Date;
 
     constructor(companyDto) {
         if(companyDto.companyCRN) {
@@ -20,8 +22,48 @@ export class CompanyDto {
         if(companyDto.organisationRole) {
             this.organisationRole = companyDto.organisationRole;
         }
+
+        if(companyDto.createdAt) {
+            this.createdAt = new Date(companyDto.createdAt);
+        }
+
+        if(companyDto.updatedAt) {
+            this.updatedAt = new Date(companyDto.updatedAt);
+        }
     }
 
+
+    /**
+     * Getter $createdAt
+     * @return {Date}
+     */
+	public get $createdAt(): Date {
+		return this.createdAt;
+	}
+
+    /**
+     * Getter $updatedAt
+     * @return {Date}
+     */
+	public get $updatedAt(): Date {
+		return this.updatedAt;
+	}
+
+    /**
+     * Setter $createdAt
+     * @param {Date} value
+     */
+	public set $createdAt(value: Date) {
+		this.createdAt = value;
+	}
+
+    /**
+     * Setter $updatedAt
+     * @param {Date} value
+     */
+	public set $updatedAt(value: Date) {
+		this.updatedAt = value;
+	}
 
     /**
      * Getter $companyCRN
@@ -87,4 +129,5 @@ export class CompanyDto {
 		this.organisationRole = value;
 	}
 
+    
 }

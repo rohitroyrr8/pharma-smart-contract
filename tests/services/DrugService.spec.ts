@@ -5,9 +5,9 @@ import * as sinon from 'sinon';
 
 import log4js = require('log4js');
 
-const logger = log4js.getLogger('Pharmanet Test')
+const logger = log4js.getLogger('Pharmanet Test');
 
-class PharmanetContext implements Context {
+class PharmanetContext extends Context {
     logging;
     public stub: ChaincodeStub = sinon.createChaincodeStub(ChaincodeStub);
     public clientIdentity: ClientIdentity = sinon.createIdentity(ClientIdentity);
