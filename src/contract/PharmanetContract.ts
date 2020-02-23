@@ -5,6 +5,8 @@ import { CompanyDto } from '../dto/CompanyDto';
 import { CompanyService } from '../services/CompanyService';
 import { DrugService } from '../services/DrugService';
 import { PurchasingOrderService } from '../services/PurchasingOrderService';
+import { ShippmentDto } from '../dto/ShippmentDto';
+import { ShippmentService } from '../services/ShippmentService';
 
 const logger = log4js.getLogger('PharmaNet SmartContract');
 
@@ -30,9 +32,13 @@ export class PharmanetContract extends Contract {
         return new PharmaNetContext();
     }
 
+    /** Comapny starts**/
+
     public async registerCompany(ctx: PharmaNetContext, companyDto: string) {
         return (new CompanyService().registerCompany(ctx, companyDto));
     }
+    
+    /** Drug starts**/
 
     public async addDrug(ctx: PharmaNetContext, drugStr: string) {
         return (new DrugService().addDrug(ctx, drugStr));
@@ -50,11 +56,19 @@ export class PharmanetContract extends Contract {
         return (new DrugService().getDrugCurrentState(ctx, drugStr));
     }
 
+    /** Purchaseing Order starts**/
+
     public async createPO(ctx: PharmaNetContext, purchasingOrderStr: string) {
         return (new PurchasingOrderService().createPO(ctx, purchasingOrderStr));
     }
 
-    public async createShippment(ctx: PharmaNetContext, shippmentDto) {
-        return (new s)
+    /** Shippment starts**/
+
+    public async createShippment(ctx: PharmaNetContext, shippmentStr: string) {
+        return (new ShippmentService().createShippment(ctx, shippmentStr));
+    }
+
+    public async updateShippment(ctx: PharmaNetContext, shippmentStr: string) {
+        return (new ShippmentService().updateShippment(ctx, shippmentStr));
     }
 }
