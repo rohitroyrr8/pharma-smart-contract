@@ -38,12 +38,72 @@ export class DrugService {
         }
     }
 
-    public async retailDrug(ctx: PharmaNetContext, drug: string) {
-        return null;
+    public async retailDrug(ctx: PharmaNetContext, drugStr: string) {
+        try {
+            let drug: DrugDto = new DrugDto(JSON.parse(drugStr));
+
+            if(!drug.$serialNo) {
+                return new SupplyChainResponse(422, 'Serial No. '.concat(Messages.E000));
+            }
+
+            if(!drug.$drugName) {
+                return new SupplyChainResponse(422, 'Drug Name '.concat(Messages.E000));
+            }
+
+            const productCompositeKey = await CommonUtil.createCompositeKey(drug.$drugName, drug.$serialNo);
+            const retailerKey = await CommonUtil.createCompositeKey(drug.$retailer);
+
+            let productBuffer = await ctx.stub.getState(productCompositeKey);
+            if(!productBuffer || productBuffer.length <=0 ) {
+                throw new RangeError('Invalid Drug name or Serial no.');
+            }
+
+            let drugObj: DrugDto = JSON.parse(productBuffer.toString());
+            
+            drugObj.$shippment = [retailerKey];
+            drugObj.$owner = drugObj.$customerAadhar;
+            drugObj.$updatedAt = new Date();
+
+            await ctx.stub.putState(productCompositeKey, Buffer.from(JSON.stringify(drugObj)));
+            return new SupplyChainResponse(200, 'Drug Updated.', null, drugObj);
+            
+        } catch(error) {
+            if(error instanceof RangeError) {
+                return new SupplyChainResponse(422, error.message);
+            }
+            logger.error(error);
+            return new SupplyChainResponse(500, Messages.E002, error);
+        }
     }
 
-    public async viewHistory(ctx: PharmaNetContext, drug: string) {
-        return null;
+    public async viewHistory(ctx: PharmaNetContext, drugStr: string) {
+        try {
+            let drug: DrugDto = new DrugDto(JSON.parse(drugStr));
+
+            if(!drug.$serialNo) {
+                return new SupplyChainResponse(422, 'Serial No. '.concat(Messages.E000));
+            }
+
+            if(!drug.$drugName) {
+                return new SupplyChainResponse(422, 'Drug Name '.concat(Messages.E000));
+            }
+
+            const productCompositeKey = await CommonUtil.createCompositeKey(drug.$drugName, drug.$serialNo);
+
+            let productBuffer = await ctx.stub.getHistoryForKey(productCompositeKey);
+            if(!productBuffer) {
+                throw new RangeError('Invalid Drug name or Serial no.');
+            }
+
+            let drugObj: DrugDto = JSON.parse(productBuffer.toString());
+            return new SupplyChainResponse(200, 'Drug History fetched.', null, drugObj);
+        } catch(error) {
+            if(error instanceof RangeError) {
+                return new SupplyChainResponse(422, error.message);
+            }
+            logger.error(error);
+            return new SupplyChainResponse(500, Messages.E002, error);
+        }
     }
 
     public async getDrugCurrentState(ctx: PharmaNetContext, drugStr: string) {
@@ -64,7 +124,9 @@ export class DrugService {
             if(!productBuffer || productBuffer.length <=0 ) {
                 throw new RangeError('Invalid Drug name or Serial no.');
             }
-            return (new DrugDto(JSON.parse(productBuffer.toString())));
+
+            let drugObj = JSON.parse(productBuffer.toString());
+            return new SupplyChainResponse(200, 'Drug fetched.', null, drugObj);
         } catch(error) {
             if(error instanceof RangeError) {
                 return new SupplyChainResponse(422, error.message);
@@ -103,7 +165,7 @@ export class DrugService {
 
         if(!drug.$company.$companyCRN) {
             result.isValid = false;
-            remarks.push('Company CRN . '.concat(Messages.E000));
+            remarks.push('Company CRN '.concat(Messages.E000));
         }
 
         result.remarks = remarks;

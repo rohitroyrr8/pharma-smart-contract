@@ -8,18 +8,20 @@ export class DrugDto {
     private expiryDate: Date;
     private shippment: string[];
     private manufacturer: string;
+    private retailer: string;
     private owner: string;
     private createdAt: Date;
     private updatedAt: Date;
     
     private company: CompanyDto;
-    private customerAadhar: number;
+    private customerAadhar: string;
 
     constructor(drugDto) {
 
         this.productId = drugDto.productId;
         this.manufacturer  = drugDto.manufacturer;
         this.owner = drugDto.owner;
+        this.retailer = drugDto.retailer;
         
         if(drugDto.drugName) {
             this.drugName = drugDto.drugName;
@@ -61,6 +63,23 @@ export class DrugDto {
             this.updatedAt = new Date(drugDto.updatedAt);
         }
     }
+
+
+    /**
+     * Getter $retailer
+     * @return {string}
+     */
+	public get $retailer(): string {
+		return this.retailer;
+	}
+
+    /**
+     * Setter $retailer
+     * @param {string} value
+     */
+	public set $retailer(value: string) {
+		this.retailer = value;
+	}
 
     /**
      * Getter $productId
@@ -202,7 +221,7 @@ export class DrugDto {
      * Getter $customerAadhar
      * @return {number}
      */
-	public get $customerAadhar(): number {
+	public get $customerAadhar(): string {
 		return this.customerAadhar;
 	}
 
@@ -250,7 +269,7 @@ export class DrugDto {
      * Setter $customerAadhar
      * @param {number} value
      */
-	public set $customerAadhar(value: number) {
+	public set $customerAadhar(value: string) {
 		this.customerAadhar = value;
 	}
 
