@@ -136,7 +136,7 @@ export class DrugService {
         }
     }
 
-    public async validDrugDto(drug: DrugDto): Promise<any> {
+    private async validDrugDto(drug: DrugDto): Promise<any> {
         let result: any = {};
         result.isValid = true;
         result.remarks = [];
