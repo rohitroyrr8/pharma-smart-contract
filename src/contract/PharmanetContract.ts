@@ -26,19 +26,23 @@ export class PharmanetContract extends Contract {
     }
 
     async instantiate(ctx) {
-        console.log('Pharmanet Smart Contract instantiated.');
+        logger.info(`Pharmanet Smart Contract instantiated.`)
     }
     public createContext(){
         return new PharmaNetContext();
     }
 
-    /** Comapny starts**/
+    /** 
+     * *************************   COMPANY STARTS    *****************************
+    **/
 
     public async registerCompany(ctx: PharmaNetContext, companyDto: string) {
-        return (new CompanyService().registerCompany(ctx, companyDto));
+        return (new CompanyService().registerCompany(ctx, companyDto));s
     }
     
-    /** Drug starts**/
+    /** 
+     * *************************   DRUG STARTS    *****************************
+    **/
 
     public async addDrug(ctx: PharmaNetContext, drugStr: string) {
         return (new DrugService().addDrug(ctx, drugStr));
@@ -56,13 +60,17 @@ export class PharmanetContract extends Contract {
         return (new DrugService().getDrugCurrentState(ctx, drugStr));
     }
 
-    /** Purchaseing Order starts**/
+    /** 
+     * *************************   PURCHASING ORDER STARTS    *****************************
+    **/
 
     public async createPO(ctx: PharmaNetContext, purchasingOrderStr: string) {
         return (new PurchasingOrderService().createPO(ctx, purchasingOrderStr));
     }
 
-    /** Shippment starts**/
+    /** 
+     * *************************   SHIPPMENT STARTS    *****************************
+    **/
 
     public async createShippment(ctx: PharmaNetContext, shippmentStr: string) {
         return (new ShippmentService().createShippment(ctx, shippmentStr));

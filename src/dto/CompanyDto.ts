@@ -1,4 +1,13 @@
+import { RunTimeValidator } from "../utils/RunTimeValidator";
+import { DocType } from "../enums/DocType";
+
+const setString = RunTimeValidator.setString;
+const setNumber = RunTimeValidator.setNumber;
+
 export class CompanyDto {
+    private identifier: string;
+    private readonly docType: DocType = DocType.Company;
+    
     private companyCRN: number;
     private companyName: string;
     private location: string;
@@ -7,20 +16,22 @@ export class CompanyDto {
     private updatedAt: Date;
 
     constructor(companyDto) {
+        this.identifier = setString(companyDto.identifier);
+        
         if(companyDto.companyCRN) {
-            this.companyCRN = companyDto.companyCRN;
+            this.companyCRN = setNumber(companyDto.companyCRN);
         }
 
         if(companyDto.companyName) {
-            this.companyName = companyDto.companyName;
+            this.companyName = setString(companyDto.companyName);
         }
 
         if(companyDto.location) {
-            this.location = companyDto.location;
+            this.location = setString(companyDto.location);
         }
 
         if(companyDto.organisationRole) {
-            this.organisationRole = companyDto.organisationRole;
+            this.organisationRole = setString(companyDto.organisationRole);
         }
 
         if(companyDto.createdAt) {
@@ -32,6 +43,22 @@ export class CompanyDto {
         }
     }
 
+
+    /**
+     * Getter $identifier
+     * @return {string}
+     */
+	public get $identifier(): string {
+		return this.identifier;
+	}
+
+    /**
+     * Setter $identifier
+     * @param {string} value
+     */
+	public set $identifier(value: string) {
+		this.identifier = value;
+	}
 
     /**
      * Getter $createdAt

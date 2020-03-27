@@ -1,6 +1,14 @@
 import { CompanyDto } from "./CompanyDto";
+import { DocType } from "../enums/DocType";
+import { RunTimeValidator } from "../utils/RunTimeValidator";
+
+const setString = RunTimeValidator.setString;
+const setNUmber = RunTimeValidator.setNumber;
 
 export class DrugDto {
+    private identifier: string;
+    private readonly docType: DocType = DocType.Drug;
+    
     private productId: string;
     private drugName: string;
     private serialNo: string;
@@ -18,33 +26,33 @@ export class DrugDto {
 
     constructor(drugDto) {
 
-        this.productId = drugDto.productId;
-        this.manufacturer  = drugDto.manufacturer;
-        this.owner = drugDto.owner;
-        this.retailer = drugDto.retailer;
+        this.productId = setString(drugDto.productId);
+        this.manufacturer  = setString(drugDto.manufacturer);
+        this.owner = setString(drugDto.owner);
+        this.retailer = setString(drugDto.retailer);
         
         if(drugDto.drugName) {
-            this.drugName = drugDto.drugName;
+            this.drugName = setString(drugDto.drugName);
         }
 
         if(drugDto.serialNo) {
-            this.serialNo = drugDto.serialNo;
+            this.serialNo = setString(drugDto.serialNo);
         }
 
         if(drugDto.manufacturerDate) {
-            this.manufacturerDate = drugDto.manufacturerDate;
+            this.manufacturerDate = new Date(drugDto.manufacturerDate);
         }
 
         if(drugDto.expiryDate) {
-            this.expiryDate = drugDto.expiryDate;
+            this.expiryDate = new Date(drugDto.expiryDate);
         }
 
-        if(drugDto.companyCRN) {
+        if(drugDto.company) {
             this.company = new CompanyDto(drugDto.company);
         }
 
         if(drugDto.customerAadhar) {
-            this.customerAadhar = drugDto.customerAadhar;
+            this.customerAadhar = setString(drugDto.customerAadhar);
         }
 
         if(drugDto.shippment) {
@@ -65,6 +73,22 @@ export class DrugDto {
     }
 
 
+    /**
+     * Getter $identifier
+     * @return {string}
+     */
+	public get $identifier(): string {
+		return this.identifier;
+	}
+
+    /**
+     * Setter $identifier
+     * @param {string} value
+     */
+	public set $identifier(value: string) {
+		this.identifier = value;
+	}
+    
     /**
      * Getter $retailer
      * @return {string}

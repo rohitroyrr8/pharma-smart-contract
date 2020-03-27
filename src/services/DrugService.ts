@@ -33,11 +33,15 @@ export class DrugService {
 
             return new SupplyChainResponse(200, 'Drug added.');
         } catch(error) {
-            logger.error(error);
+            logger.warn(error);
             return new SupplyChainResponse(500, Messages.E002, error)
         }
     }
-
+    /**
+     * 
+     * @param ctx 
+     * @param drugStr 
+     */
     public async retailDrug(ctx: PharmaNetContext, drugStr: string) {
         try {
             let drug: DrugDto = new DrugDto(JSON.parse(drugStr));
@@ -71,11 +75,16 @@ export class DrugService {
             if(error instanceof RangeError) {
                 return new SupplyChainResponse(422, error.message);
             }
-            logger.error(error);
+            logger.warn(error);
             return new SupplyChainResponse(500, Messages.E002, error);
         }
     }
 
+    /**
+     * 
+     * @param ctx 
+     * @param drugStr 
+     */
     public async viewHistory(ctx: PharmaNetContext, drugStr: string) {
         try {
             let drug: DrugDto = new DrugDto(JSON.parse(drugStr));
@@ -101,11 +110,16 @@ export class DrugService {
             if(error instanceof RangeError) {
                 return new SupplyChainResponse(422, error.message);
             }
-            logger.error(error);
+            logger.warn(error);
             return new SupplyChainResponse(500, Messages.E002, error);
         }
     }
 
+    /**
+     * 
+     * @param ctx 
+     * @param drugStr 
+     */
     public async getDrugCurrentState(ctx: PharmaNetContext, drugStr: string) {
         try {
             let drug: DrugDto = new DrugDto(JSON.parse(drugStr));
@@ -131,11 +145,15 @@ export class DrugService {
             if(error instanceof RangeError) {
                 return new SupplyChainResponse(422, error.message);
             }
-            logger.error(error);
+            logger.warn(error);
             return new SupplyChainResponse(500, Messages.E002, error);
         }
     }
 
+    /**
+     * 
+     * @param drug 
+     */
     private async validDrugDto(drug: DrugDto): Promise<any> {
         let result: any = {};
         result.isValid = true;

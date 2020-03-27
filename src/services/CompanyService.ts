@@ -33,7 +33,7 @@ export class CompanyService {
 
             return new SupplyChainResponse(200, 'Company registered successfully.');
         } catch(error) {
-           logger.error(error);
+           logger.warn(error);
            return new SupplyChainResponse(500, Messages.E002, error);
         }
     }

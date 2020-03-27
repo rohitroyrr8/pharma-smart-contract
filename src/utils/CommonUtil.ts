@@ -1,4 +1,5 @@
 import { Messages } from "./Messages";
+import { TypeMismatchError } from "../errors/TypeMismatchError";
 
 export class CommonUtil {
     public static async createCompositeKey(...args: string[]): Promise<string> {
@@ -64,13 +65,25 @@ export class CommonUtil {
     }
 
     public static isStringNotNullorBlank(str: string): boolean{
-        return !this.isStringNullorBlank;
+        return !this.isStringNullorBlank(str);
     }
 
-    public ObjectNullorEmpty(obj: any): boolean{
+    public static isObjectNullorEmpty(obj: any): boolean{
         if(!obj || Object.keys(obj).length == 0) {
             return true;
         }
         return false;
+    }
+
+    public static isObjectNotNullorEmpty(obj: any): boolean {
+        return !this.isObjectNullorEmpty(obj);
+    }
+
+    public static isArrayNullorEmpty(arr: any): boolean {
+        return !arr || arr.length === 0;
+    }
+
+    public static isArrayNotNullorEmpty(arr: any): boolean {
+        return !this.isArrayNullorEmpty(arr);
     }
 }

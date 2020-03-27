@@ -1,7 +1,15 @@
 import { CompanyDto } from "./CompanyDto";
 import { DrugDto } from "./DrugDto";
+import { DocType } from "../enums/DocType";
+import { RunTimeValidator } from "../utils/RunTimeValidator";
+
+const setString = RunTimeValidator.setString;
+const setNumber = RunTimeValidator.setNumber;
 
 export class PurchasingOrderDto {
+    private identifier: string;
+    private readonly docType: DocType = DocType.PurchasingOrder;
+    
     private buyer: CompanyDto;
     private seller: CompanyDto;
 
@@ -9,6 +17,7 @@ export class PurchasingOrderDto {
     private quantity: number;
 
     constructor(purchasingOrderDto) {
+        this.identifier = setString(purchasingOrderDto.identifier);
         if(purchasingOrderDto.buyer) {
             this.buyer = new CompanyDto(purchasingOrderDto.buyer);
         }
@@ -22,10 +31,26 @@ export class PurchasingOrderDto {
         }
 
         if(purchasingOrderDto.quantity) {
-            this.quantity = purchasingOrderDto.quantity;
+            this.quantity = setNumber(purchasingOrderDto.quantity);
         }
     }
 
+
+    /**
+     * Getter $identifier
+     * @return {string}
+     */
+	public get $identifier(): string {
+		return this.identifier;
+	}
+
+    /**
+     * Setter $identifier
+     * @param {string} value
+     */
+	public set $identifier(value: string) {
+		this.identifier = value;
+	}
 
     /**
      * Getter $buyer
