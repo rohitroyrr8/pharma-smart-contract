@@ -20,31 +20,36 @@
     "url": "https://github.com/rohitroyrr8/pharma-smart-contract/issues"
   },
   "homepage": "https://github.com/rohitroyrr8/pharma-smart-contract#readme",
-  "scripts" : {
-	  "lint" : "tslint -c tslint.json 'src/**/*.ts'",
-	  "pretest" : "npm run lint",
-	  "test" : "nyc mocha -r ts-node/register 'tests/**/*.spec.ts'",
-	  "test-single" : "nyc mocha -r ts-node/register $1",
-	  "start" : "fabric-chaincode-node start",
-	  "build" : "tsc",
-	  "build:watch" : "tsc-w",
-	  "prepublishOnly" : "npm run build"
+  "scripts": {
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "pretest": "npm run lint",
+    "test": "nyc mocha -r ts-node/register 'tests/**/*.spec.ts'",
+    "test-single": "nyc mocha -r ts-node/register $1",
+    "start": "fabric-chaincode-node start",
+    "build": "tsc",
+    "build:watch": "tsc-w",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "@theledger/fabric-mock-stub": "^5.0.0",
-    "@types/chai": "^4.2.9",
-    "@types/mocha": "^7.0.1",
-    "@types/node": "^13.7.1",
+    "@types/chai": "^4.2.11",
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^13.9.1",
+    "@types/sinon-chai": "^3.2.1",
     "body-parser": "^1.19.0",
+    "chai": "^4.2.0",
     "cli-table": "^0.3.1",
-    "fabric-ca-client": "^1.4.5",
-    "fabric-client": "^1.4.5",
+    "fabric-ca-client": "^1.4.7",
+    "fabric-client": "^1.4.7",
     "fabric-contract-api": "^2.0.0",
     "fabric-shim": "^2.0.0",
     "log4js": "^6.1.2",
+    "mocha": "^5.2.0",
     "nyc": "^15.0.0",
-    "ts-node": "^8.6.2",
-    "typescript": "^3.7.5",
+    "sinon": "^9.0.1",
+    "sinon-chai": "^3.5.0",
+    "ts-node": "^8.7.0",
+    "typescript": "^3.8.3",
     "typescript-eslint-parser": "^22.0.0"
   }
 }

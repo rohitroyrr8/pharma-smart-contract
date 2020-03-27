@@ -56,4 +56,21 @@ export class CommonUtil {
         }
         return hierarchyKey;
     }
+
+    public static isStringNullorBlank(str: string): boolean {
+        if(!str || !str.trim())
+            return true;
+        return false;
+    }
+
+    public static isStringNotNullorBlank(str: string): boolean{
+        return !this.isStringNullorBlank;
+    }
+
+    public ObjectNullorEmpty(obj: any): boolean{
+        if(!obj || Object.keys(obj).length == 0) {
+            return true;
+        }
+        return false;
+    }
 }
