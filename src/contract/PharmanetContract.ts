@@ -37,7 +37,7 @@ export class PharmanetContract extends Contract {
     **/
 
     public async registerCompany(ctx: PharmaNetContext, companyDto: string) {
-        return (new CompanyService().registerCompany(ctx, companyDto));s
+        return (new CompanyService().registerCompany(ctx, companyDto));
     }
     
     /** 
