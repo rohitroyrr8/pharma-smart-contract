@@ -18,7 +18,7 @@ function transport() {
     echo $'\n'"Info: Moving the package to the container!"$'\n'
     echo $'\n'""$'\n'
     
-    if ! docker cp ../pharma-smart-contract cli.pharma-network.com:/opt/gopath/src/github.com; then
+    if ! docker cp ../pharma-smart-contract cli.trueclaim.com:/opt/gopath/src/github.com; then
         echo $'\n'"Failure: Failed moving the package!"$'\n'
         exit 1
     fi
@@ -30,7 +30,7 @@ function serve() {
     echo $'\n'"Info: Deploying from CLI!"$'\n'
     echo $'\n'""$'\n'
     
-    if ! docker exec cli.pharma-network.com scripts/instantiate_chaincode.sh $1; then
+    if ! docker exec cli.trueclaim.com scripts/instantiate_chaincode.sh $1; then
         echo $'\n'"Failure: Failed deploying the package!"$'\n'
         exit 1
     fi
