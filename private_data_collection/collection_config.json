@@ -1,0 +1,11 @@
+[
+  {
+       "name": "AilmentFraudsAndAlerts",
+       "policy": "OR ('TrueCoverMSP.member','TrueCoverMSP.peer', 'TrueCoverMSP.admin', 'TrueCoverMSP.client', 'ClaimAdministratorsMSP.member','ClaimAdministratorsMSP.peer', 'ClaimAdministratorsMSP.admin', 'ClaimAdministratorsMSP.client', 'InsurersMSP.member','InsurersMSP.peer', 'InsurersMSP.admin', 'InsurersMSP.client', 'ProvidersMSP.member','ProvidersMSP.peer', 'ProvidersMSP.admin', 'ProvidersMSP.client')",
+       "requiredPeerCount": 0,
+       "maxPeerCount": 3,
+       "blockToLive": 0,
+       "memberOnlyRead": true
+  }
+]
+
