@@ -25,7 +25,7 @@ export class PharmanetContract extends Contract {
         // global.transporterOrg = 'transporter.pharma-network.com';
     }
 
-    async instantiate(ctx) {
+    async init(ctx) {
         logger.info(`Pharmanet Smart Contract instantiated.`)
     }
     public createContext(){
