@@ -31,28 +31,28 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-        "@theledger/fabric-mock-stub": "^4.0.0",
-        "cli-table": "^0.3.1",
-        "fabric-ca-client": "~1.4.0",
-        "fabric-client": "^1.4.4",
-        "fabric-contract-api": "~1.4.0",
-        "fabric-shim": "~1.4.0",
-        "log4js": "^0.6.38"
-    },
-    "devDependencies": {
-        "@types/chai": "^4.1.7",
-        "@types/log4js": "0.0.33",
-        "@types/mocha": "^5.2.5",
-        "@types/node": "^10.12.10",
-        "@types/sinon": "^5.0.7",
-        "@types/sinon-chai": "^3.2.1",
-        "chai": "^4.2.0",
-        "mocha": "^5.2.0",
-        "nyc": "^13.1.0",
-        "sinon": "^7.1.1",
-        "sinon-chai": "^3.3.0",
-        "ts-node": "^7.0.1",
-        "tslint": "^5.11.0",
-        "typescript": "3.2.2"
-    }
+    "@theledger/fabric-mock-stub": "^4.0.0",
+    "cli-table": "^0.3.1",
+    "fabric-ca-client": "~1.4.0",
+    "fabric-client": "^1.4.4",
+    "fabric-contract-api": "~1.4.0",
+    "fabric-shim": "~1.4.0",
+    "log4js": "^0.6.38"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/log4js": "0.0.33",
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.12.10",
+    "@types/sinon": "^5.0.7",
+    "@types/sinon-chai": "^3.2.1",
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "nyc": "^13.1.0",
+    "sinon": "^7.1.1",
+    "sinon-chai": "^3.3.0",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.11.0",
+    "typescript": "3.2.2"
+  }
 }
